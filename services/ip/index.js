@@ -1,9 +1,10 @@
 'use strict';
 const { lookupFor } = require('./func');
-const { ipAdmin } = require('../../config/guard.config');
+// const { ipAdmin } = require('../../config/guard.config');
 module.exports = {
   ipAdm: async (ip) => {
     let hasPersmission = false;
+    const ipAdmin = strapi.guard.ipAdmin;
     const country = await lookupFor(ip);
 
     if (ipAdmin.default === 'allow') {
@@ -11,7 +12,6 @@ module.exports = {
         !ipAdmin.country.disallow.includes(country) &&
         !ipAdmin.static.disallow.includes(ip)
       ) {
-        console.log(!ipAdmin.country.disallow.includes(country));
         hasPersmission = true;
       }
     } else if (ipAdmin.default === 'disallow') {

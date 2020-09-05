@@ -1,6 +1,6 @@
 module.exports = {
   ipAdmin: {
-    default: 'allow',
+    default: 'allow', // or can be 'disallow'
     country: {
       allow: [],
       disallow: [],
@@ -11,8 +11,7 @@ module.exports = {
     },
   },
   requests: {
-    global: [{ time: 10, limit: 3 }],
-    urls: [],
-    // { url: '/qas', method: 'GET', time: 15, limit: 10 }
+    global: [], // { time: 10, limit: 30 }
+    urls: [], // { url: '/comments', method: 'GET', time: 15, limit: 2}
   },
 };

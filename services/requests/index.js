@@ -1,9 +1,10 @@
 'use strict';
 const ctypto = require('crypto');
-const { requests } = require('../../config/guard.config');
+// const { requests } = require('../../config/guard.config');
 // const { has } = require('lodash');
 module.exports = {
   reqAdm: async ({ ip, url, method }) => {
+    const requests = strapi.guard.requests;
     // check global limitaion
     for (const item of requests.global) {
       const hashKey = ctypto
@@ -25,7 +26,6 @@ module.exports = {
       if ((item.method = method && url.search(item.url) !== -1))
         limitaion.push(item);
     });
-    console.log(limitaion);
     //
     for (const item of limitaion) {
       const hashKey = ctypto
